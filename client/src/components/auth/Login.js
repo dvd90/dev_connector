@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../../actions/auth";
+import { login, loadUser } from "../../actions/auth";
 import PropTypes from "prop-types";
 // import auth from "../../reducers/auth";
 
 // import axios from "axios";
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, loadUser }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -25,6 +25,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   // Redirect if logged in
   if (isAuthenticated) {
+    loadUser();
     return <Redirect to="/dashboard" />;
   }
 
@@ -66,6 +67,7 @@ const Login = ({ login, isAuthenticated }) => {
 };
 
 Login.propTypes = {
+  loadUser: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
@@ -74,4 +76,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, loadUser })(Login);

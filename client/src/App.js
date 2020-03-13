@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useLayoutEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
@@ -25,7 +25,7 @@ if (localStorage.token) {
 }
 
 const App = () => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     store.dispatch(loadUser());
   }, []);
 
