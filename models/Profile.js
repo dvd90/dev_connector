@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const ProfileSchema = new Schema({
+const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user"
   },
-
   company: {
     type: String
   },
@@ -52,7 +50,7 @@ const ProfileSchema = new Schema({
       },
       current: {
         type: Boolean,
-        required: false
+        default: false
       },
       description: {
         type: String
@@ -78,12 +76,11 @@ const ProfileSchema = new Schema({
         required: true
       },
       to: {
-        type: Date,
-        required: true
+        type: Date
       },
       current: {
         type: Boolean,
-        required: false
+        default: false
       },
       description: {
         type: String
